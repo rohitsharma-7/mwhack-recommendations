@@ -36,7 +36,11 @@ const RootPageLayout = (
           </Container>
         </Box>
       </Box>
-      <Container minH="calc(100vh - 96px)" maxW="container.xl">
+      <Container
+        minH="calc(100vh - 96px)"
+        maxW="container.xl"
+        textAlign="center"
+      >
         {children}
       </Container>
     </Box>
