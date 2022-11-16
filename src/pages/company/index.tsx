@@ -1,13 +1,14 @@
 import { type NextPage } from "next";
+import RootPageLayout from "../../components/layout";
 // import CreateCompanyPageContainer from "../pageContainers/LandingPage/LandingPage";
 
 const CreateCompany: NextPage = () => {
   return (
-    <main className="container mx-auto flex min-h-screen flex-col items-center justify-center p-4">
-      {/* <CreateCompanyPageContainer /> */}
+    <RootPageLayout>
       <h2></h2>
-    </main>
+    </RootPageLayout>
   );
 };
+// {/* <CreateCompanyPageContainer /> */}
 
 export default CreateCompany;

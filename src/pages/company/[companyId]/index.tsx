@@ -1,11 +1,12 @@
 import { NextPage } from "next";
+import RootPageLayout from "../../../components/layout";
 import EndorsementListingPageContainer from "../../../pageContainers/EndorsementListingPage/index";
 
 const EndorsementListingPage: NextPage = () => {
   return (
-    <main className="container mx-auto flex min-h-screen flex-col items-center justify-center p-4">
+    <RootPageLayout>
       <EndorsementListingPageContainer />
-    </main>
+    </RootPageLayout>
   );
 };
 
