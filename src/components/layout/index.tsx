@@ -25,7 +25,7 @@ const RootPageLayout = (
           <Container maxW="container.xl" py={{ base: "3", lg: "5" }}>
             <Flex alignItems="center" justify="space-between">
               <HStack>
-                <Image w="14" src="testimonial.svg" alt="" />
+                <Image w="14" src="/testimonial.svg" alt="" />
                 <Heading>
                   Get
                   <span className="text-purple-800">Reco</span>
