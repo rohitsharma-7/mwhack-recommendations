@@ -17,7 +17,9 @@ const AddEndorsementPageContainer = () => {
       {/* <CompanyCard/> */}
       {step === 0 ? (
         <VStack w="full" alignItems="flex-start">
-          <Text fontSize="5xl">Add Your Endorsement</Text>
+          <Text fontSize="5xl" className="text-purple-800">
+            Add Your Endorsement
+          </Text>
           <Textarea
             resize="none"
             value={endorsementText}
@@ -42,7 +44,7 @@ const AddEndorsementPageContainer = () => {
         </VStack>
       ) : (
         <VStack w="full" paddingTop={36}>
-          <Text fontSize="5xl" mb={8}>
+          <Text fontSize="5xl" mb={8} className="text-purple-800">
             Your endorsment has been
             <br />
             successfully submitted

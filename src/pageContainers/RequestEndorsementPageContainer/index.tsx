@@ -48,7 +48,9 @@ const RequestEndorsementPageContainer = () => {
 
   return (
     <VStack align="flex-start" textAlign="left">
-      <Text fontSize="5xl">Client&apos;s Information:</Text>
+      <Text fontSize="5xl" className="text-purple-800">
+        Client&apos;s Information:
+      </Text>
       <FormControl isRequired>
         <FormLabel>Name</FormLabel>
         <Input
