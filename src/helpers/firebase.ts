@@ -1,7 +1,9 @@
 import firebase from "firebase/compat/app";
 import "firebase/compat/auth";
 import "firebase/compat/firestore";
-import { getFirestore } from "firebase/firestore";
+import { doc, getDoc, getFirestore } from "firebase/firestore";
+import { type Company } from "../../models/company";
+import { AppError } from "./appError";
 
 // Your web app's Firebase configuration
 const firebaseConfig = {
@@ -16,3 +18,12 @@ const firebaseConfig = {
 const app = firebase.initializeApp(firebaseConfig);
 export default firebase;
 export const db = getFirestore(app);
+
+export const getCompany = async (id: string): Promise<Company> => {
+  try {
+    return (await (await getDoc(doc(db, "company", id))).data()) as Company;
+  } catch (err) {
+    console.error(err);
+    throw new AppError("couldn't retrieve company", [], 404);
+  }
+};
