@@ -1,14 +1,13 @@
 import { type NextPage } from "next";
 import RootPageLayout from "../../../../components/layout";
-// import AddEndorsementPageContainer from "../pageContainers/AddEndorsementPage/AddEndorsementPage";
+import AddEndorsementPageContainer from "../../../../pageContainers/AddEndorsementPageContainer";
 
 const AddEndorsement: NextPage = () => {
   return (
     <RootPageLayout>
-      <h2>AddEndorsement</h2>
+      <AddEndorsementPageContainer />
     </RootPageLayout>
   );
 };
-// {/* <AddEndorsementPageContainer /> */}
 
 export default AddEndorsement;
