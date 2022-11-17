@@ -8,10 +8,8 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
       case "GET":
         const slug = req.query.company[0];
         if (slug) {
-          const { name, description, logo, endorsements } = await getCompany(
-            slug
-          );
-          res.status(200).json({ name, description, logo, endorsements });
+          const data = await getCompany(slug);
+          res.status(200).json(data);
         }
     }
   } catch (e) {

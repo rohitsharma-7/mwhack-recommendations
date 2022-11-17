@@ -19,20 +19,18 @@ type Props = {
     name: string;
     logo: string;
     description: string;
-    // companyName: string;
-    // logoURL: string;
-    // description: string;
-    // category: string;
-    // address: {
-    //   city: string;
-    //   country: string;
-    // };
-    // website: string;
+    category: string;
+    address: {
+      city: string;
+      country: string;
+    };
+    website?: string;
   };
 };
 const CompanyCard = ({
   companyData: { name, logo, description, category, address, website },
 }: Props) => {
+  console.log({ logo });
   return (
     <Card px="1" py="3" borderRadius="2xl" w="80" bgColor="white">
       <CardHeader textAlign="left" pb="2">
