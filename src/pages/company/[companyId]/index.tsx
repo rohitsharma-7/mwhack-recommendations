@@ -4,7 +4,7 @@ import EndorsementListingPageContainer from "../../../pageContainers/Endorsement
 
 const EndorsementListingPage: NextPage = () => {
   return (
-    <RootPageLayout>
+    <RootPageLayout showRequestTestimonial>
       <EndorsementListingPageContainer />
     </RootPageLayout>
   );

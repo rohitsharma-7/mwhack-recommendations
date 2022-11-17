@@ -31,7 +31,9 @@ const RootPageLayout = (
                   <span className="text-purple-800">Reco</span>
                 </Heading>
               </HStack>
-              {showRequestTestimonial && <Button>Request Testimonial</Button>}
+              {showRequestTestimonial && (
+                <Button colorScheme="purple">Request Testimonial</Button>
+              )}
             </Flex>
           </Container>
         </Box>

@@ -18,7 +18,7 @@ const TestimonialCard = ({
         <Avatar src={avatar} name={name} size="md" />
         <Flex direction="column" alignItems="flex-start">
           <Text fontWeight="semibold">{name} </Text>
-          <Text fontSize="sm" color="purple.400">
+          <Text fontSize="sm" color="purple.300">
             {country}
           </Text>
         </Flex>
