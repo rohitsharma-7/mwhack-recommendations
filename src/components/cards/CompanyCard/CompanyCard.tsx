@@ -16,32 +16,28 @@ import { BsArrowUpRightCircle } from "react-icons/bs";
 
 type Props = {
   companyData: {
-    companyName: string;
-    logoURL: string;
+    name: string;
+    logo: string;
     description: string;
-    category: string;
-    address: {
-      city: string;
-      country: string;
-    };
-    website: string;
+    // companyName: string;
+    // logoURL: string;
+    // description: string;
+    // category: string;
+    // address: {
+    //   city: string;
+    //   country: string;
+    // };
+    // website: string;
   };
 };
 const CompanyCard = ({
-  companyData: {
-    companyName,
-    logoURL,
-    description,
-    category,
-    address,
-    website,
-  },
+  companyData: { name, logo, description, category, address, website },
 }: Props) => {
   return (
     <Card px="1" py="3" borderRadius="2xl" w="80" bgColor="white">
       <CardHeader textAlign="left" pb="2">
-        <Avatar name={companyName} src={logoURL} size="xl" mb="4" />
-        <Heading size="xl">{companyName}</Heading>
+        <Avatar name={name} src={logo} size="xl" mb="4" />
+        <Heading size="xl">{name}</Heading>
         <Text>{description}</Text>
       </CardHeader>
       <CardBody pt="0">
