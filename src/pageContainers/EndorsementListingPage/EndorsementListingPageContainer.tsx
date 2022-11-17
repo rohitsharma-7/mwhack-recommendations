@@ -1,6 +1,7 @@
-import { HStack, VStack } from "@chakra-ui/react";
+import { Button, Flex, Heading, HStack, VStack } from "@chakra-ui/react";
 import { CompanyCard } from "../../components/cards";
 import TestimonialCard from "../../components/cards/TestimonialCard";
+import { useRouter } from "next/router";
 
 const dummyCompanyData = {
   companyName: "Meltwater",
@@ -26,18 +27,49 @@ const dummyTestimonialData = {
 };
 
 const EndorsementListingPageContainer = () => {
+  const router = useRouter();
+
+  const testimonialArr = [
+    dummyTestimonialData,
+    dummyTestimonialData,
+    dummyTestimonialData,
+    dummyTestimonialData,
+  ];
   return (
-    <HStack alignItems="flex-start" spacing="8" pb="24">
+    <Flex alignItems="flex-start" justifyContent="space-between" pb="24">
       <CompanyCard companyData={dummyCompanyData} />
-      <HStack w="calc(100vw - 600px)">
+      <HStack pl="8" boxSizing="border-box" w="calc(100vw - 600px)">
         <VStack w="full" spacing="4">
-          <TestimonialCard testimonialData={dummyTestimonialData} />
-          <TestimonialCard testimonialData={dummyTestimonialData} />
-          <TestimonialCard testimonialData={dummyTestimonialData} />
-          <TestimonialCard testimonialData={dummyTestimonialData} />
+          {testimonialArr.length > 0 ? (
+            testimonialArr.map((testimonial, index) => (
+              <TestimonialCard
+                key={`${testimonial.name}-${index}`}
+                testimonialData={dummyTestimonialData}
+              />
+            ))
+          ) : (
+            <Flex
+              direction="column"
+              alignItems="center"
+              justifyContent="center"
+              h="80"
+            >
+              <VStack spacing="8">
+                <Heading color="purple.800">No Testimonials found!</Heading>
+                <Button
+                  colorScheme="purple"
+                  onClick={() =>
+                    router.push(`${router.query.companyId}/testimonial/`)
+                  }
+                >
+                  Request Testimonial
+                </Button>
+              </VStack>
+            </Flex>
+          )}
         </VStack>
       </HStack>
-    </HStack>
+    </Flex>
   );
 };
 

@@ -7,6 +7,7 @@ import {
   HStack,
   Image,
 } from "@chakra-ui/react";
+import { useRouter } from "next/router";
 
 type Props = {
   children?: React.ReactNode;
@@ -18,6 +19,8 @@ const RootPageLayout = (
     showRequestTestimonial: false,
   }
 ) => {
+  const router = useRouter();
+
   return (
     <Box bgColor="#e9dbfa">
       <Box as="section" pb={{ base: "12", md: "24" }}>
@@ -32,7 +35,14 @@ const RootPageLayout = (
                 </Heading>
               </HStack>
               {showRequestTestimonial && (
-                <Button colorScheme="purple">Request Testimonial</Button>
+                <Button
+                  colorScheme="purple"
+                  onClick={() =>
+                    router.push(`${router.query.companyId}/testimonial/`)
+                  }
+                >
+                  Request Testimonial
+                </Button>
               )}
             </Flex>
           </Container>
