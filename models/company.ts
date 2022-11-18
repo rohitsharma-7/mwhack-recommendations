@@ -4,21 +4,20 @@ export interface Company {
     city: string;
     country: string;
   };
+  otp: string;
   logo: string;
   category: string;
   description: string;
-  pendingEndorsements: string[];
-  endorsements: Endorsement[];
+  testimonials: Testimonial[];
   website: string;
   email: string;
 }
 
-export interface Endorsement {
-  endorser: {
-    name: string;
-    picture: string;
-    currentDesignation: string;
-  };
-
-  description: string;
+export interface Testimonial {
+  name: string;
+  email: string;
+  country: string;
+  message: string;
+  isPublic: boolean;
+  slug: string;
 }
