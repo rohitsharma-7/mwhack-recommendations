@@ -42,6 +42,7 @@ const RequestEndorsementPageContainer = () => {
   const router = useRouter();
   console.log({ router });
   const toast = useToast();
+
   useEffect(() => {
     if (router.query.companyId) {
       const sendOTP = async () => {
@@ -71,16 +72,17 @@ const RequestEndorsementPageContainer = () => {
       };
       sendOTP();
     }
-  }, [router]);
+  }, []);
 
   const handleButtonClick = async () => {
-    console.log(details);
-
     try {
-      const res = await axios.post("url1", details);
+      const res = await axios.post(
+        `/api/company/${router.query.companyId}/testimonial`,
+        details
+      );
       if (res.status === 200) {
         toast({
-          title: "Verified!",
+          title: "Request Sent!",
           status: "success",
           duration: 5000,
           isClosable: true,

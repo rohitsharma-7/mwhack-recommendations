@@ -41,7 +41,7 @@ const EndorsementListingPageContainer = () => {
       />
       <HStack pl="8" boxSizing="border-box" w="calc(100vw - 600px)">
         <VStack w="full" spacing="4">
-          {data.testimonials.filter((t: any) => t.isPublic)?.length > 0 ? (
+          {data?.testimonials?.filter((t: any) => t.isPublic)?.length > 0 ? (
             data.testimonials.map((testimonial: any, index: number) => (
               <TestimonialCard
                 key={`${testimonial.name}-${index}`}

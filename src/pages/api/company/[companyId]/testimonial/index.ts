@@ -1,3 +1,4 @@
+/* eslint-disable import/no-anonymous-default-export */
 const otpGenerator = require("otp-generator");
 import type { NextApiRequest, NextApiResponse } from "next";
 import { Testimonial } from "../../../../../../models/company";
