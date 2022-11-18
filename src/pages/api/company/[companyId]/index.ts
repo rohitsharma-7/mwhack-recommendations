@@ -2,7 +2,7 @@ import type { NextApiRequest, NextApiResponse } from "next";
 import { AppError } from "../../../../helpers/appError";
 import { getCompany } from "../../../../helpers/company";
 
-export default async (req: NextApiRequest, res: NextApiResponse) => {
+const handler = async (req: NextApiRequest, res: NextApiResponse) => {
   try {
     switch (req.method) {
       case "GET":
@@ -19,3 +19,5 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
     return res.status(400).json("Failed to process request");
   }
 };
+
+export default handler;

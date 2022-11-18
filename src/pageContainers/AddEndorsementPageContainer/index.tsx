@@ -21,6 +21,7 @@ const AddEndorsementPageContainer = () => {
             Add Your Endorsement
           </Text>
           <Textarea
+            variant="filled"
             resize="none"
             value={endorsementText}
             onChange={handleInputChange}

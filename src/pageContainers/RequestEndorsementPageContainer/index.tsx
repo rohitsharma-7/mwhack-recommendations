@@ -7,15 +7,20 @@ import {
   Select,
   Button,
   useToast,
+  PinInput,
+  PinInputField,
 } from "@chakra-ui/react";
-import { type ChangeEvent, useState } from "react";
+import { type ChangeEvent, useState, useEffect } from "react";
+import { useRouter } from "next/router";
 import countries from "../../utils/countrySelect";
+import axios from "axios";
 
 type details = {
   name: string;
   country: string;
   email: string;
   otp: string;
+  profilePictureURL: string;
 };
 
 const RequestEndorsementPageContainer = () => {
@@ -24,6 +29,7 @@ const RequestEndorsementPageContainer = () => {
     country: "",
     email: "",
     otp: "",
+    profilePictureURL: "",
   });
   const handleInputChange = (
     e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>
@@ -33,18 +39,60 @@ const RequestEndorsementPageContainer = () => {
     setDetails({ ...details, [name]: value });
   };
 
-  const handleButtonClick = () => {
-    console.log(details);
-    toast({
-      title: "Email Sent!",
-      status: "success",
-      duration: 5000,
-      isClosable: true,
-      position: "bottom-right",
-    });
-  };
-
+  const router = useRouter();
   const toast = useToast();
+  useEffect(() => {
+    const sendOTP = async () => {
+      try {
+        const res = await axios.post("url", router.query.companyId);
+        if (res.status === 200) {
+          toast({
+            title: "Email Sent!",
+            status: "success",
+            duration: 5000,
+            isClosable: true,
+            position: "bottom-right",
+          });
+        }
+      } catch (e: any) {
+        console.error(e);
+        toast({
+          title: "Something went wrong :(",
+          status: "error",
+          duration: 5000,
+          isClosable: true,
+          position: "bottom-right",
+        });
+      }
+    };
+    sendOTP();
+  }, []);
+
+  const handleButtonClick = async () => {
+    console.log(details);
+
+    try {
+      const res = await axios.post("url1", details);
+      if (res.status === 200) {
+        toast({
+          title: "Verified!",
+          status: "success",
+          duration: 5000,
+          isClosable: true,
+          position: "bottom-right",
+        });
+      }
+    } catch (e: any) {
+      console.error(e);
+      toast({
+        title: "Something went wrong :(",
+        status: "error",
+        duration: 5000,
+        isClosable: true,
+        position: "bottom-right",
+      });
+    }
+  };
 
   return (
     <VStack align="flex-start" textAlign="left">
@@ -54,6 +102,7 @@ const RequestEndorsementPageContainer = () => {
       <FormControl isRequired>
         <FormLabel>Name</FormLabel>
         <Input
+          variant="filled"
           width="2xl"
           marginBottom={8}
           type="text"
@@ -68,6 +117,7 @@ const RequestEndorsementPageContainer = () => {
         />
         <FormLabel>Email address</FormLabel>
         <Input
+          variant="filled"
           width="2xl"
           marginBottom={8}
           type="email"
@@ -82,6 +132,7 @@ const RequestEndorsementPageContainer = () => {
         />
         <FormLabel>Country</FormLabel>
         <Select
+          variant="filled"
           placeholder="Country"
           width="2xl"
           marginBottom={8}
@@ -101,7 +152,61 @@ const RequestEndorsementPageContainer = () => {
           ))}
         </Select>
         <FormLabel>OTP</FormLabel>
+        <PinInput
+          variant="filled"
+          otp
+          value={details.otp}
+          onChange={(e) => setDetails({ ...details, otp: e })}
+        >
+          <PinInputField
+            marginRight={4}
+            marginBottom={8}
+            _focus={{
+              borderColor: "purple.600",
+            }}
+            borderColor="purple.300"
+            _hover={{
+              borderColor: "purple.300",
+            }}
+          />
+          <PinInputField
+            marginRight={4}
+            marginBottom={8}
+            _focus={{
+              borderColor: "purple.600",
+            }}
+            borderColor="purple.300"
+            _hover={{
+              borderColor: "purple.300",
+            }}
+          />
+          <PinInputField
+            marginRight={4}
+            marginBottom={8}
+            _focus={{
+              borderColor: "purple.600",
+            }}
+            borderColor="purple.300"
+            _hover={{
+              borderColor: "purple.300",
+            }}
+          />
+          <PinInputField
+            marginRight={4}
+            marginBottom={8}
+            _focus={{
+              borderColor: "purple.600",
+            }}
+            borderColor="purple.300"
+            _hover={{
+              borderColor: "purple.300",
+            }}
+          />
+        </PinInput>
+
+        <FormLabel>Profile Picture URL</FormLabel>
         <Input
+          variant="filled"
           width="2xl"
           marginBottom={8}
           type="text"
@@ -110,8 +215,8 @@ const RequestEndorsementPageContainer = () => {
           _hover={{
             borderColor: "purple.300",
           }}
-          name="otp"
-          value={details.otp}
+          name="profilePictureURL"
+          value={details.profilePictureURL}
           onChange={handleInputChange}
         />
       </FormControl>

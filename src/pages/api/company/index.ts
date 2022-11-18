@@ -1,4 +1,4 @@
-import { Company } from "../../../../models/company";
+import { type Company } from "../../../../models/company";
 import Joi from "joi";
 import type { NextApiRequest, NextApiResponse } from "next";
 import schemaValidator from "../../../helpers/validator";
