@@ -2,11 +2,11 @@ import type { NextApiRequest, NextApiResponse } from "next";
 import { AppError } from "../../../helpers/appError";
 import { getCompany } from "../../../helpers/company";
 
-export default async (req: NextApiRequest, res: NextApiResponse) => {
+const handler = async (req: NextApiRequest, res: NextApiResponse) => {
   try {
     switch (req.method) {
       case "GET":
-        const slug = req.query.company[0];
+        const slug = req.query.company![0];
         if (slug) {
           const data = await getCompany(slug);
           res.status(200).json(data);
@@ -20,3 +20,5 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
     return res.status(400).json("Failed to process request");
   }
 };
+
+export default handler;

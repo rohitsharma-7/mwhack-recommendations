@@ -41,7 +41,7 @@ const EndorsementListingPageContainer = () => {
       />
       <HStack pl="8" boxSizing="border-box" w="calc(100vw - 600px)">
         <VStack w="full" spacing="4">
-          {data.endorsements.length > 0 ? (
+          {data.endorsements?.length > 0 ? (
             data.endorsements.map((testimonial, index) => (
               <TestimonialCard
                 key={`${testimonial.name}-${index}`}

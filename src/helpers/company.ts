@@ -1,5 +1,5 @@
 import { doc, getDoc, addDoc, collection } from "firebase/firestore";
-import { Company } from "../../models/company";
+import { type Company } from "../../models/company";
 import { AppError } from "./appError";
 import { db } from "./firebase";
 

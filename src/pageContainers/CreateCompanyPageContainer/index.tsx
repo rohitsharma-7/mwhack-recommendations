@@ -6,32 +6,39 @@ import {
   Textarea,
   Button,
   Select,
+  useToast,
 } from "@chakra-ui/react";
 import { type ChangeEvent } from "react";
 import { useState } from "react";
+import { useRouter } from "next/router";
+import axios from "axios";
 import countries from "../../utils/countrySelect";
 
 type details = {
   name: string;
   email: string;
-  logoURL: string;
+  logo: string;
   description: string;
   address: {
     city: string;
     country: string;
   };
+  category: string;
+  website: string;
 };
 
 const CreateCompanyPageContainer = () => {
   const [details, setDetails] = useState<details>({
     name: "",
     email: "",
-    logoURL: "",
+    logo: "",
     description: "",
     address: {
       city: "",
       country: "",
     },
+    category: "",
+    website: "",
   });
   const handleInputChange = (
     e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>
@@ -47,12 +54,41 @@ const CreateCompanyPageContainer = () => {
     }
   };
 
+  const toast = useToast();
+  const router = useRouter();
+
+  const createCompany = async () => {
+    try {
+      const res = await axios.post("/api/company", details);
+      if (res.status === 200) {
+        toast({
+          title: res.data.message,
+          status: "success",
+          duration: 5000,
+          isClosable: true,
+          position: "bottom-right",
+        });
+        router.push(`/company/${res.data.company.slug}`);
+      }
+    } catch (e: any) {
+      toast({
+        title: e.response.data.message,
+        status: "error",
+        duration: 5000,
+        isClosable: true,
+        position: "bottom-right",
+      });
+
+      console.error(e);
+    }
+  };
+
   const handleButtonClick = () => {
-    console.log(details);
+    createCompany();
   };
 
   return (
-    <VStack align="flex-start" textAlign="left">
+    <VStack align="flex-start" textAlign="left" pb={8}>
       <FormControl isRequired>
         <FormLabel>Name</FormLabel>
         <Input
@@ -92,8 +128,36 @@ const CreateCompanyPageContainer = () => {
           _hover={{
             borderColor: "purple.300",
           }}
-          value={details.logoURL}
-          name="logoURL"
+          value={details.logo}
+          name="logo"
+          onChange={handleInputChange}
+        />
+        <FormLabel>Website</FormLabel>
+        <Input
+          width="2xl"
+          marginBottom={8}
+          type="url"
+          focusBorderColor="purple.600"
+          borderColor="purple.300"
+          _hover={{
+            borderColor: "purple.300",
+          }}
+          value={details.website}
+          name="website"
+          onChange={handleInputChange}
+        />
+        <FormLabel>Category</FormLabel>
+        <Input
+          width="2xl"
+          marginBottom={8}
+          type="text"
+          focusBorderColor="purple.600"
+          borderColor="purple.300"
+          _hover={{
+            borderColor: "purple.300",
+          }}
+          value={details.category}
+          name="category"
           onChange={handleInputChange}
         />
         <FormLabel>Country</FormLabel>
