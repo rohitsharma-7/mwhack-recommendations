@@ -44,7 +44,8 @@ const RequestEndorsementPageContainer = () => {
   useEffect(() => {
     const sendOTP = async () => {
       try {
-        const res = await axios.post("url", router.query.companyId);
+        const res = await axios.get("testimonial");
+        console.log({ res });
         if (res.status === 200) {
           toast({
             title: "Email Sent!",

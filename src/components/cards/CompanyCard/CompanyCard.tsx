@@ -30,7 +30,6 @@ type Props = {
 const CompanyCard = ({
   companyData: { name, logo, description, category, address, website },
 }: Props) => {
-  console.log({ logo });
   return (
     <Card px="1" py="3" borderRadius="2xl" w="80" bgColor="white">
       <CardHeader textAlign="left" pb="2">
