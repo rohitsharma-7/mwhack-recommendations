@@ -18,12 +18,3 @@ const firebaseConfig = {
 const app = firebase.initializeApp(firebaseConfig);
 export default firebase;
 export const db = getFirestore(app);
-
-export const getCompany = async (id: string): Promise<Company> => {
-  try {
-    return (await (await getDoc(doc(db, "company", id))).data()) as Company;
-  } catch (err) {
-    console.error(err);
-    throw new AppError("couldn't retrieve company", [], 404);
-  }
-};

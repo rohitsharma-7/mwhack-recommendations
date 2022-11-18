@@ -19,5 +19,6 @@ export interface Testimonial {
   country: string;
   message: string;
   isPublic: boolean;
+  picture?: string;
   slug: string;
 }
