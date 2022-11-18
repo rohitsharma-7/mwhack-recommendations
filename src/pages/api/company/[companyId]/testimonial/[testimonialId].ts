@@ -12,7 +12,7 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
         if (testimonialSlug && companySlug) {
           const { picture, message } = req.body;
 
-          let testimonial = await addTestimonial(
+          const testimonial = await addTestimonial(
             companySlug,
             testimonialSlug,
             message,
