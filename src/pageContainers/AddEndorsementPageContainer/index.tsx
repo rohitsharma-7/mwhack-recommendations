@@ -9,12 +9,14 @@ import {
   FormLabel,
   Input,
   useToast,
+  Icon,
 } from "@chakra-ui/react";
 import { type ChangeEvent, useState } from "react";
 import { useRouter } from "next/router";
 import { useQuery } from "@tanstack/react-query";
-import axios from "axios";
 import { CompanyCard } from "../../components/cards";
+import { BsCheck2 } from "react-icons/bs";
+import axios from "axios";
 
 const AddEndorsementPageContainer = () => {
   const fetchCompanyData = (_: any, companyId: string | undefined) => {
@@ -130,6 +132,7 @@ const AddEndorsementPageContainer = () => {
         </VStack>
       ) : (
         <VStack w="full">
+          <Icon as={BsCheck2} w={24} h={24} className="fill-purple-800" />
           <Text fontSize="5xl" mb={8} className="text-purple-800">
             Your endorsment has been
             <br />
