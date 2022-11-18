@@ -71,13 +71,13 @@ export const addTestimonial = async (
   picture: string
 ) => {
   try {
-    let allTestimonials = (
+    const allTestimonials = (
       (await getDoc(doc(db, "company", companyId))).data() as Company
     ).testimonials;
 
     let testimonial = allTestimonials.find((b) => b.slug === testimonialId);
 
-    let sortedTestimonials = allTestimonials.filter(
+    const sortedTestimonials = allTestimonials.filter(
       (b) => b.slug !== testimonialId
     );
 
