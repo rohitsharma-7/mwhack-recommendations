@@ -69,6 +69,7 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
         }
         break;
       case "GET":
+        console.log("get trigeed");
         if (slug) {
           const data = await getCompany(slug as string);
 
