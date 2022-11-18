@@ -36,7 +36,7 @@ const EndorsementListingPageContainer = () => {
           description: data.description,
           category: data.category,
           address: data.address,
-          website: data.website,
+          website: companyId as string,
         }}
       />
       <HStack pl="8" boxSizing="border-box" w="calc(100vw - 600px)">
