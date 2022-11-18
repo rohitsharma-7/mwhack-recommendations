@@ -40,34 +40,38 @@ const RequestEndorsementPageContainer = () => {
   };
 
   const router = useRouter();
+  console.log({ router });
   const toast = useToast();
   useEffect(() => {
-    const sendOTP = async () => {
-      try {
-        const res = await axios.get("testimonial");
-        console.log({ res });
-        if (res.status === 200) {
+    if (router.query.companyId) {
+      const sendOTP = async () => {
+        try {
+          const res = await axios.get(
+            `/api/company/${router.query.companyId}/testimonial`
+          );
+          if (res.status === 200) {
+            toast({
+              title: "Email Sent!",
+              status: "success",
+              duration: 5000,
+              isClosable: true,
+              position: "bottom-right",
+            });
+          }
+        } catch (e: any) {
+          console.error(e);
           toast({
-            title: "Email Sent!",
-            status: "success",
+            title: "Something went wrong :(",
+            status: "error",
             duration: 5000,
             isClosable: true,
             position: "bottom-right",
           });
         }
-      } catch (e: any) {
-        console.error(e);
-        toast({
-          title: "Something went wrong :(",
-          status: "error",
-          duration: 5000,
-          isClosable: true,
-          position: "bottom-right",
-        });
-      }
-    };
-    sendOTP();
-  }, []);
+      };
+      sendOTP();
+    }
+  }, [router]);
 
   const handleButtonClick = async () => {
     console.log(details);
