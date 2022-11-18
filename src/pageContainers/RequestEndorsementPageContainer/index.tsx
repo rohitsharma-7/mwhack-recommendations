@@ -20,7 +20,7 @@ type details = {
   country: string;
   email: string;
   otp: string;
-  profilePictureURL: string;
+  // profilePictureURL: string;
 };
 
 const RequestEndorsementPageContainer = () => {
@@ -29,7 +29,6 @@ const RequestEndorsementPageContainer = () => {
     country: "",
     email: "",
     otp: "",
-    profilePictureURL: "",
   });
   const handleInputChange = (
     e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>
@@ -211,7 +210,7 @@ const RequestEndorsementPageContainer = () => {
           />
         </PinInput>
 
-        <FormLabel>Profile Picture URL</FormLabel>
+        {/* <FormLabel>Profile Picture URL</FormLabel>
         <Input
           variant="filled"
           width="2xl"
@@ -225,7 +224,7 @@ const RequestEndorsementPageContainer = () => {
           name="profilePictureURL"
           value={details.profilePictureURL}
           onChange={handleInputChange}
-        />
+        /> */}
       </FormControl>
       <Button colorScheme="purple" size="lg" onClick={handleButtonClick}>
         Request
