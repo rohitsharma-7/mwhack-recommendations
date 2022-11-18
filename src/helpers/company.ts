@@ -15,7 +15,11 @@ export const createCompany = async (company: Company) => {
     return await addDoc(collection(db, "company"), company);
   } catch (err) {
     console.error(err);
-    throw new AppError("couldn't create company, something went wrong with the request", [], 409);
+    throw new AppError(
+      "couldn't create company, something went wrong with the request",
+      [],
+      409
+    );
   }
 };
 
@@ -24,7 +28,11 @@ export const getCompany = async (id: string): Promise<Company> => {
     return (await getDoc(doc(db, "company", id))).data() as Company;
   } catch (err) {
     console.error(err);
-    throw new AppError("couldn't retrieve company, something went wrong with the request", [], 404);
+    throw new AppError(
+      "couldn't retrieve company, something went wrong with the request",
+      [],
+      404
+    );
   }
 };
 
@@ -36,7 +44,11 @@ export const attachCodeToCompany = async (id: string, otp: string) => {
     });
   } catch (err) {
     console.error(err);
-    throw new AppError("couldn't attach otp, something went wrong with the request", [], 405);
+    throw new AppError(
+      "couldn't attach otp, something went wrong with the request",
+      [],
+      405
+    );
   }
 };
 
@@ -60,7 +72,11 @@ export const attachTestimonialToCompany = async (
     }
   } catch (err) {
     console.error(err);
-    throw new AppError("couldn't attach testimonial, something went wrong with the request", [], 404);
+    throw new AppError(
+      "couldn't attach testimonial, something went wrong with the request",
+      [],
+      404
+    );
   }
 };
 
@@ -75,10 +91,10 @@ export const addTestimonial = async (
       (await getDoc(doc(db, "company", companyId))).data() as Company
     ).testimonials;
 
-    let testimonial = allTestimonials.find((b) => b.slug === testimonialId);
+    let testimonial = allTestimonials.find((b) => b.slug == testimonialId);
 
     const sortedTestimonials = allTestimonials.filter(
-      (b) => b.slug !== testimonialId
+      (b) => b.slug != testimonialId
     );
 
     if (testimonial !== undefined) {
@@ -97,9 +113,19 @@ export const addTestimonial = async (
       }
 
       return testimonial;
+    } else {
+      throw new AppError(
+        "couldn't update testimonial, incorrect testimonial reference",
+        [],
+        405
+      );
     }
   } catch (err) {
     console.error(err);
-    throw new AppError("couldn't update testimonial, something went wrong with the request", [], 404);
+    throw new AppError(
+      "couldn't update testimonial, something went wrong with the request",
+      [],
+      404
+    );
   }
 };
