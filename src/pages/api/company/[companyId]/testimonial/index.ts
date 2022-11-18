@@ -22,6 +22,7 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
 
           if (company.otp && company.otp === otp) {
             const testimonialSlug = otpGenerator.generate(16, {
+              lowerCaseAlphabets: false,
               upperCaseAlphabets: false,
               specialChars: false,
             });
@@ -74,6 +75,7 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
 
           const otp = otpGenerator.generate(4, {
             upperCaseAlphabets: false,
+            lowerCaseAlphabets: false,
             specialChars: false,
           });
 
