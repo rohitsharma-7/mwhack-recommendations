@@ -92,6 +92,7 @@ const CreateCompanyPageContainer = () => {
       <FormControl isRequired>
         <FormLabel>Name</FormLabel>
         <Input
+          variant="filled"
           width="2xl"
           marginBottom={8}
           type="text"
@@ -106,6 +107,7 @@ const CreateCompanyPageContainer = () => {
         />
         <FormLabel>Email address</FormLabel>
         <Input
+          variant="filled"
           width="2xl"
           marginBottom={8}
           type="email"
@@ -120,6 +122,7 @@ const CreateCompanyPageContainer = () => {
         />
         <FormLabel>Logo URL</FormLabel>
         <Input
+          variant="filled"
           width="2xl"
           marginBottom={8}
           type="url"
@@ -134,6 +137,7 @@ const CreateCompanyPageContainer = () => {
         />
         <FormLabel>Website</FormLabel>
         <Input
+          variant="filled"
           width="2xl"
           marginBottom={8}
           type="url"
@@ -148,6 +152,7 @@ const CreateCompanyPageContainer = () => {
         />
         <FormLabel>Category</FormLabel>
         <Input
+          variant="filled"
           width="2xl"
           marginBottom={8}
           type="text"
@@ -162,6 +167,7 @@ const CreateCompanyPageContainer = () => {
         />
         <FormLabel>Country</FormLabel>
         <Select
+          variant="filled"
           placeholder="Country"
           width="2xl"
           marginBottom={8}
@@ -182,6 +188,7 @@ const CreateCompanyPageContainer = () => {
         </Select>
         <FormLabel>City</FormLabel>
         <Input
+          variant="filled"
           width="2xl"
           marginBottom={8}
           type="text"
@@ -196,6 +203,7 @@ const CreateCompanyPageContainer = () => {
         />
         <FormLabel>Description</FormLabel>
         <Textarea
+          variant="filled"
           width="4xl"
           marginBottom={8}
           focusBorderColor="purple.600"

@@ -3,7 +3,6 @@ import { type Session } from "next-auth";
 import { SessionProvider } from "next-auth/react";
 import { ChakraProvider } from "@chakra-ui/react";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
-
 import "../styles/globals.css";
 
 const MyApp: AppType<{ session: Session | null }> = ({
