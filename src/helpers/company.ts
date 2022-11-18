@@ -1,4 +1,11 @@
-import { doc, getDoc, addDoc, collection, updateDoc } from "firebase/firestore";
+import {
+  doc,
+  getDoc,
+  addDoc,
+  query,
+  collection,
+  updateDoc,
+} from "firebase/firestore";
 import { Company, Testimonial } from "../../models/company";
 import { AppError } from "./appError";
 import { db } from "./firebase";
@@ -41,7 +48,7 @@ export const attachTestimonialToCompany = async (
     const allTestimonials = (
       (await getDoc(doc(db, "company", id))).data() as Company
     ).testimonials;
-    const dock = await doc(db, "company", id);
+    const dock = doc(db, "company", id);
     if (allTestimonials !== undefined) {
       await updateDoc(dock, {
         testimonials: [testimonial, ...allTestimonials],
@@ -57,16 +64,40 @@ export const attachTestimonialToCompany = async (
   }
 };
 
-
-
-export const addTestimonial = async (companyId: string, testimonialId: string, message: string, picture: string) => {
-
-
+export const addTestimonial = async (
+  companyId: string,
+  testimonialId: string,
+  message: string,
+  picture: string
+) => {
   try {
-    // return (await getDoc(doc(db, "company", id))).data() as Company;
+    let allTestimonials = (
+      (await getDoc(doc(db, "company", companyId))).data() as Company
+    ).testimonials;
 
+    let testimonial = allTestimonials.find((b) => b.slug === testimonialId);
 
+    let sortedTestimonials = allTestimonials.filter(
+      (b) => b.slug !== testimonialId
+    );
 
+    if (testimonial !== undefined) {
+      testimonial = { ...testimonial, isPublic: true, picture, message };
+
+      const dock = doc(db, "company", companyId);
+
+      if (sortedTestimonials.length) {
+        await updateDoc(dock, {
+          testimonials: [testimonial, ...sortedTestimonials],
+        });
+      } else {
+        await updateDoc(dock, {
+          testimonials: [testimonial],
+        });
+      }
+
+      return testimonial;
+    }
   } catch (err) {
     console.error(err);
     throw new AppError("couldn't retrieve company", [], 404);

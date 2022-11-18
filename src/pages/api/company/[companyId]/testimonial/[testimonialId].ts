@@ -8,12 +8,24 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
       case "PUT":
         const testimonialSlug = req.query.testimonialId as string;
         const companySlug = req.query.companyId as string;
+
         if (testimonialSlug && companySlug) {
           const { picture, message } = req.body;
 
-          addTestimonial(companySlug, testimonialSlug, message, picture);
+          let testimonial = await addTestimonial(
+            companySlug,
+            testimonialSlug,
+            message,
+            picture
+          );
 
-          res.status(200).json({ message: "testimonial added!" });
+          res.status(200).json({ testimonial });
+        } else {
+          throw new AppError(
+            "couldn't retrieve company or testimonial instance",
+            [],
+            404
+          );
         }
     }
   } catch (e) {
