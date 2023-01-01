@@ -48,9 +48,7 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
                 .concat(
                   `, <p> Please visit <a href="${webUrl(
                     `company/${slug}/testimonial/${testimonial.slug}`
-                  )}"> ${webUrl(
-                    `company/${slug}/testimonial/${testimonial.slug}`
-                  )}</a> to give your testimonial.</p>`
+                  )}"> here </a> to give your testimonial.</p>`
                 ),
             };
 
